@@ -15,6 +15,7 @@ const Controller: FC = () => {
 	if (activity === Activity.Editing) {
 		return (
 			<FishEditor
+				show_header={true}
 				execute={() => changeActivity(Activity.Executing)}
 			/>
 		);

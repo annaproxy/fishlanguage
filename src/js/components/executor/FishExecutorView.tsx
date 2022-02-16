@@ -4,6 +4,7 @@ import FishExecutor from 'fish-interpreter';
 import Layout from '../layouts/Layout';
 import CodeView from './CodeView';
 import ExecutorControls from './ExecutorControls';
+import FishEditor from '../fishEditor/FishEditor';
 
 interface FishExecutorViewProps {
 	source: string
@@ -71,7 +72,7 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 	const [localInitialStack, setLocalInitialStack] = useState<number[]>([]);
 	const executor = useRef<FishExecutor>();
 
-	const reset = (newInitialStack: number[]) => {
+	const reset = (newInitialStack: number[], newSource: string = "") => {
 		// XXX This whole method is quite hacky, but it works
 
 		// Store the initial stack for next reset
@@ -84,7 +85,7 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 		}
 
 		// Create the executor
-		executor.current = new FishExecutor(source, newInitialStack);
+		executor.current = new FishExecutor(newSource || source, newInitialStack);
 
 		// Give it the input
 		input.forEach((c) => executor.current.giveInput(c));
@@ -107,6 +108,10 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 	return (
 		<Layout>
 			<div className="fish-code-executor-view col">
+				<FishEditor
+					show_header={false}
+					execute={() => reset([], localStorage.code)}
+				/>
 				<CodeView
 					grid={state.grid}
 					instructionPointer={state.instructionPointer}

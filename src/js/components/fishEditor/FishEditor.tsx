@@ -4,35 +4,51 @@ import Layout from '../layouts/Layout';
 const STORAGE_KEY = 'code';
 
 interface FishEditorProps {
+	show_header: boolean,
 	execute: () => void
 }
 
-const FishEditor: FC<FishEditorProps> = ({ execute }) => {
+const FishEditor: FC<FishEditorProps> = ({ show_header: show_thing, execute }) => {
 	const editor = useRef<HTMLTextAreaElement>(null);
 
 	const defaultValue = localStorage.getItem(STORAGE_KEY) ?? '';
 
 	const submit = () => {
 		localStorage.setItem(STORAGE_KEY, editor.current?.value ?? '');
-
 		execute();
 	};
-
-	return (
-		<Layout>
-			<div className="fish-code-editor col">
-				<textarea
-					className="form-control"
-					ref={editor}
-					defaultValue={defaultValue}
-					placeholder={'Write your ><> code here'}
-				/>
-				<div className="btn-group">
-					<button type="button" className="btn btn-primary" onClick={submit}>Submit</button>
+	if (show_thing) {
+		return (
+			<Layout>
+				<div className="fish-code-editor col">
+					<textarea
+						className="form-control"
+						ref={editor}
+						defaultValue={defaultValue}
+						placeholder={'Write your ><> code here'}
+						rows={10}
+					/>
+					<div className="btn-group">
+						<button type="button" className="btn btn-primary" onClick={submit}>Submit</button>
+					</div>
 				</div>
+			</Layout>
+		);
+	}
+	else {
+		return <div className="fish-code-editor col">
+			<textarea
+				className="form-control"
+				ref={editor}
+				defaultValue={defaultValue}
+				placeholder={'Write your ><> code here'}
+				rows={4}
+			/>
+			<div className="btn-group">
+				<button type="button" className="btn btn-primary" onClick={submit} style={{ marginBottom: '10px' }}>Submit</button>
 			</div>
-		</Layout>
-	);
+		</div>
+	}
 };
 
 export default FishEditor;
