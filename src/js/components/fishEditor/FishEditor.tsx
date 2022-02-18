@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react';
+import { FC, useRef, useState } from 'react';
 import Layout from '../layouts/Layout';
 
 const STORAGE_KEY = 'code';
@@ -12,6 +12,7 @@ const FishEditor: FC<FishEditorProps> = ({ show_header: show_thing, execute }) =
 	const editor = useRef<HTMLTextAreaElement>(null);
 
 	const defaultValue = localStorage.getItem(STORAGE_KEY) ?? '';
+	const [count, setCount] = useState(editor.current?.value.length ?? '');
 
 	const submit = () => {
 		localStorage.setItem(STORAGE_KEY, editor.current?.value ?? '');
@@ -27,7 +28,9 @@ const FishEditor: FC<FishEditorProps> = ({ show_header: show_thing, execute }) =
 						defaultValue={defaultValue}
 						placeholder={'Write your ><> code here'}
 						rows={10}
+						onChange={e => setCount(e.target.value.length)}
 					/>
+					<p>{count}</p>
 					<div className="btn-group">
 						<button type="button" className="btn btn-primary" onClick={submit}>Submit</button>
 					</div>
@@ -43,7 +46,9 @@ const FishEditor: FC<FishEditorProps> = ({ show_header: show_thing, execute }) =
 				defaultValue={defaultValue}
 				placeholder={'Write your ><> code here'}
 				rows={4}
+				onChange={e => setCount(e.target.value.length)}
 			/>
+			<p>{count}</p>
 			<div className="btn-group">
 				<button type="button" className="btn btn-primary" onClick={submit} style={{ marginBottom: '10px' }}>Submit</button>
 			</div>
