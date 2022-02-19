@@ -8,9 +8,10 @@ interface StateViewProps {
 	stackSnapshot: number[]
 	output: string
 	advances: number
+	register: number
 }
 
-const StateView: FC<StateViewProps> = ({ inputBuffer, stackSnapshot, output, advances }) => {
+const StateView: FC<StateViewProps> = ({ inputBuffer, stackSnapshot, output, advances, register }) => {
 	return (
 		<div className="row">
 			<BufferView
@@ -24,6 +25,12 @@ const StateView: FC<StateViewProps> = ({ inputBuffer, stackSnapshot, output, adv
 				initialViewMode={Mode.Number}
 				label="Stack"
 				className="col-6"
+			/>
+			<BufferView
+				buffer={[register]}
+				initialViewMode={Mode.Number}
+				label={"Register"}
+				className={"col-6"}
 			/>
 			<OutputView
 				output={output}

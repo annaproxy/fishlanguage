@@ -48,6 +48,7 @@ interface ExecutorControlsProps {
 	output: string
 	error: Error | null
 	advances: number
+	register: number
 }
 
 const ExecutorControls: FC<ExecutorControlsProps> = (
@@ -70,6 +71,7 @@ const ExecutorControls: FC<ExecutorControlsProps> = (
 		output,
 		error,
 		advances,
+		register
 	},
 ) => {
 	const initialStackRef = useRef<HTMLInputElement>(null);
@@ -206,6 +208,7 @@ const ExecutorControls: FC<ExecutorControlsProps> = (
 				inputBuffer={inputBuffer}
 				stackSnapshot={stackSnapshot}
 				advances={advances}
+				register={register}
 			/>
 			{/* Input stream input */}
 			<div>

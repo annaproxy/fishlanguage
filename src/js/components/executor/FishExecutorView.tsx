@@ -24,6 +24,7 @@ interface FishExecutorViewState {
 	isPaused: boolean
 	hasTerminated: boolean
 	advances: number
+	register: number
 }
 
 const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edit }) => {
@@ -39,10 +40,12 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 		isPaused: false,
 		hasTerminated: false,
 		advances: 0,
+		register: 0
 	});
 
 	const extractData = (executor: FishExecutor) => {
 		// Update the state
+		console.log(executor._program)
 		setState({
 			grid: executor.grid,
 			instructionPointer: executor.instructionPointer,
@@ -55,6 +58,7 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 			isPaused: executor.isPaused,
 			hasTerminated: executor.hasTerminated,
 			advances: executor.advances,
+			register: executor._program._stack._register
 		});
 	};
 
@@ -134,6 +138,7 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 					stackSnapshot={state.stackSnapshot}
 					output={state.output}
 					advances={state.advances}
+					register={state.register}
 					error={state.error}
 				/>
 			</div>
