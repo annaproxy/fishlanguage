@@ -132,6 +132,7 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack }) =
 					isPaused={state.isPaused}
 					hasTerminated={state.hasTerminated}
 					run={executor.current.run}
+					runStep={() => {executor.current.run(); executor.current.pause();}}
 					pause={executor.current.pause}
 					resume={executor.current.resume}
 					step={executor.current.step}

@@ -38,6 +38,7 @@ interface ExecutorControlsProps {
 	isPaused: boolean
 	hasTerminated: boolean
 	run: () => void
+	runStep: () => void
 	pause: () => void
 	resume: () => void
 	step: () => void
@@ -60,6 +61,7 @@ const ExecutorControls: FC<ExecutorControlsProps> = (
 		isPaused,
 		hasTerminated,
 		run,
+		runStep,
 		pause,
 		resume,
 		step,
@@ -131,7 +133,10 @@ const ExecutorControls: FC<ExecutorControlsProps> = (
 					{!hasTerminated
 						?
 						!hasStarted
-							? <button type="button" className="btn btn-success" onClick={run}>Start</button>
+							? <>
+								<button type="button" className="btn btn-success" onClick={run}>Start</button>
+								<button type="button" className="btn btn-primary" onClick={runStep}>Start (paused)</button>
+							  </>
 							:
 							!isPaused
 								? <button type="button" className="btn btn-primary" onClick={pause}>Pause</button>
