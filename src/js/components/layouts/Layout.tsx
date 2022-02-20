@@ -8,7 +8,7 @@ const Layout: FC = ({ children }) => {
 			</div>
 			<div className="row">
 				<small className="col text-center">
-					Source code available on <a href="https://github.com/Suppen/fishlanguage.com">GitHub</a>
+					Source code available on <a href="https://github.com/annaproxy/fishlanguage">GitHub</a>
 				</small>
 			</div>
 			<div className="row">
