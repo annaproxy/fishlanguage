@@ -42,7 +42,6 @@ interface ExecutorControlsProps {
 	resume: () => void
 	step: () => void
 	reset: () => void
-	edit: () => void
 	inputBuffer: string[]
 	stackSnapshot: number[]
 	output: string
@@ -65,7 +64,6 @@ const ExecutorControls: FC<ExecutorControlsProps> = (
 		resume,
 		step,
 		reset,
-		edit,
 		inputBuffer,
 		stackSnapshot,
 		output,
