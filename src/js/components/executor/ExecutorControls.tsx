@@ -146,7 +146,6 @@ const ExecutorControls: FC<ExecutorControlsProps> = (
 								)
 						: <button type="button" className="btn btn-danger" onClick={reset}>Reset</button>
 					}
-					<button type="button" className="btn btn-warning" onClick={edit}>Return to editor</button>
 				</div>
 			</div>
 			{/* The error */}

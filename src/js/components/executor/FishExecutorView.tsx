@@ -89,12 +89,7 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 			input = executor.current.inputBuffer;
 		}
 
-		var toInput = source;
-		if (typeof newSource == 'string'){
-			if (newSource != ''){
-				toInput = newSource;
-			}
-		}
+		let toInput = localStorage.getItem('code');
 
 		// Create the executor
 		executor.current = new FishExecutor(toInput, newInitialStack);
