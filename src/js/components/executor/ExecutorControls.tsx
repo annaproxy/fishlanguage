@@ -10,7 +10,7 @@ import { Mode } from '../../enum';
  *
  * @returns {number[]}	A list of individual characters which can be given as input or initial stack
  */
-const convertToList = (text: string, type: Mode): number[] => {
+export const convertToList = (text: string, type: Mode): number[] => {
 	// Find out how to treat it
 	if (type === Mode.Text) {
 		// Split into individual characters and take their unicode value
@@ -100,10 +100,8 @@ const ExecutorControls: FC<ExecutorControlsProps> = (
 		// Get the text
 		const text = inputRef.current.value || '';
 
-		// Make a character list of it and give it to the program
-		convertToList(text, type)
-			.map((num) => String.fromCharCode(num))
-			.forEach((c) => giveInput(c));
+		localStorage.setItem('input_stream',text);
+
 
 		// Clear the textarea
 		inputRef.current.value = '';

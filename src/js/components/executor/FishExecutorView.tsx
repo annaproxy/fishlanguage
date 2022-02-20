@@ -5,6 +5,8 @@ import Layout from '../layouts/Layout';
 import CodeView from './CodeView';
 import ExecutorControls from './ExecutorControls';
 import FishEditor from '../fishEditor/FishEditor';
+import { Mode } from '../../enum';
+import { convertToList } from './ExecutorControls';
 
 interface FishExecutorViewProps {
 	source: string
@@ -98,7 +100,11 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 		executor.current = new FishExecutor(toInput, newInitialStack);
 
 		// Give it the input
-		input.forEach((c) => executor.current.giveInput(c));
+		const inputStream = localStorage.getItem("input_stream") || "";
+
+		convertToList(inputStream, Mode.Text)
+			.map((num) => String.fromCharCode(num))
+			.forEach((c) => executor.current.giveInput(c));
 
 		// Initialize the state
 		extractData(executor.current);
