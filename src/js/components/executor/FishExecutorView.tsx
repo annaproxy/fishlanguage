@@ -45,7 +45,6 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 
 	const extractData = (executor: FishExecutor) => {
 		// Update the state
-		console.log(executor._program)
 		setState({
 			grid: executor.grid,
 			instructionPointer: executor.instructionPointer,
