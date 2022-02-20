@@ -7,19 +7,15 @@ enum Activity {
 	Executing
 }
 
+const STORAGE_KEY = 'code';
+
 const Controller: FC = () => {
-	const [activity, setActivity] = useState<Activity>(Activity.Editing);
+	const [activity, setActivity] = useState<Activity>(Activity.Executing);
 
 	const changeActivity = (newActivity: Activity) => setActivity(newActivity);
 
-	if (activity === Activity.Editing) {
-		return (
-			<FishEditor
-				show_header={true}
-				execute={() => changeActivity(Activity.Executing)}
-			/>
-		);
-	}
+	const defaultValue = localStorage.getItem(STORAGE_KEY) ?? '';
+	localStorage.setItem(STORAGE_KEY, defaultValue || '');
 
 	return (
 		<FishExecutorView
