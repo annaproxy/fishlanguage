@@ -10,7 +10,6 @@ import { convertToList } from './ExecutorControls';
 
 interface FishExecutorViewProps {
 	source: string
-	edit: () => void
 	initialStack?: number[]
 }
 
@@ -29,7 +28,7 @@ interface FishExecutorViewState {
 	register: number
 }
 
-const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edit }) => {
+const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack }) => {
 	const [state, setState] = useState<FishExecutorViewState>({
 		grid: [],
 		instructionPointer: { x: 0, y: 0 },
@@ -120,7 +119,6 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 		<Layout>
 			<div className="fish-code-executor-view col">
 				<FishEditor
-					show_header={false}
 					execute={() => reset([], localStorage.code)}
 				/>
 				<CodeView
@@ -139,7 +137,6 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 					step={executor.current.step}
 					giveInput={executor.current.giveInput}
 					reset={reset.bind(this, localInitialStack)}
-					edit={edit}
 					setInitialStack={reset}
 					inputBuffer={state.inputBuffer}
 					stackSnapshot={state.stackSnapshot}

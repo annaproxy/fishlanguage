@@ -4,11 +4,10 @@ import Layout from '../layouts/Layout';
 const STORAGE_KEY = 'code';
 
 interface FishEditorProps {
-	show_header: boolean,
 	execute: () => void
 }
 
-const FishEditor: FC<FishEditorProps> = ({ show_header: show_thing, execute }) => {
+const FishEditor: FC<FishEditorProps> = ({ execute }) => {
 	const editor = useRef<HTMLTextAreaElement>(null);
 
 	const defaultValue = localStorage.getItem(STORAGE_KEY) ?? '';
