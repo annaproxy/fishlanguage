@@ -39,7 +39,7 @@ const FishEditor: FC<FishEditorProps> = ({ show_header: show_thing, execute }) =
 		);
 	}
 	else {
-		return <div className="fish-code-editor col">
+		return <div className="fish-code-editor">
 			<textarea
 				className="form-control"
 				ref={editor}
