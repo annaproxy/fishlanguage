@@ -87,8 +87,15 @@ const FishExecutorView: FC<FishExecutorViewProps> = ({ source, initialStack, edi
 			input = executor.current.inputBuffer;
 		}
 
+		var toInput = source;
+		if (typeof newSource == 'string'){
+			if (newSource != ''){
+				toInput = newSource;
+			}
+		}
+
 		// Create the executor
-		executor.current = new FishExecutor(newSource || source, newInitialStack);
+		executor.current = new FishExecutor(toInput, newInitialStack);
 
 		// Give it the input
 		input.forEach((c) => executor.current.giveInput(c));
