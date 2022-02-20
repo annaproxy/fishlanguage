@@ -183,22 +183,6 @@ const ExecutorControls: FC<ExecutorControlsProps> = (
 					</div>
 				</div>
 			)}
-			{/* Execution speed */}
-			<div className="execution-speed">
-				<label>Execution speed</label>
-				<div>
-					<input
-						ref={executionSpeedRef}
-						className="form-control"
-						type="range"
-						min="0"
-						max="1000"
-						step="0.25"
-						value={processedIntervalTime}
-						onChange={onExecutionSpeedChange}
-					/>
-				</div>
-			</div>
 			{/* The program state */}
 			<StateView
 				output={output}
@@ -232,6 +216,22 @@ const ExecutorControls: FC<ExecutorControlsProps> = (
 							Interpret as array
 						</button>
 					</div>
+				</div>
+			</div>
+			{/* Execution speed */}
+			<div className="execution-speed">
+				<label>Execution speed</label>
+				<div>
+					<input
+						ref={executionSpeedRef}
+						className="form-control"
+						type="range"
+						min="0"
+						max="1000"
+						step="0.25"
+						value={processedIntervalTime}
+						onChange={onExecutionSpeedChange}
+					/>
 				</div>
 			</div>
 		</div>
